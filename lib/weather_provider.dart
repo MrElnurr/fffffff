@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
 
@@ -10,10 +9,9 @@ class WeatherProvider {
   static const String apiUrl =
       'https://api.openweathermap.org/data/2.5/weather';
 
-  static Future<Welcome> getWeatherByLocation() async {
+  Future<Welcome> getWeatherByLocation() async {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    debugPrint('${position.latitude} ---- ${position.longitude}');
     final response = await http.get(
       Uri.parse(
           '$apiUrl?lat=${position.latitude}&lon=${position.longitude}&appid=$apiKey'),
